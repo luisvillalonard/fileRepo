@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+  font-weight: 100;
+  font-size: 0.9rem;
+  color: rgb(50, 50, 50);
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.body-content {
+  position: relative !important;
+  overflow: auto !important;
+  background:#edf2f9f5;
+}
+
+.vh-100 {
+  height: 100vh !important;
+}
+
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
