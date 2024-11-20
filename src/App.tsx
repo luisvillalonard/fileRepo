@@ -2,7 +2,6 @@
 import './App.css'
 
 /* Imports */
-import { useEffect } from 'react'
 import { Layout } from 'antd'
 import { useData } from './hooks/useData';
 import { useComponents } from './components';
@@ -10,12 +9,12 @@ import LoginPage from './pages/login'
 
 function App() {
 
-  const { contextAuth: { state: { user }, getUser } } = useData()
+  const { contextAuth: { state: { user } } } = useData()
   const { StyleProvider, HeaderApp, MenuApp, RutasApp } = useComponents()
 
-  useEffect(() => {
+/*   useEffect(() => {
     getUser();
-  }, [])
+  }, []) */
 
   if (!user) {
     return <LoginPage />

@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { fileBase64, GetFileBase64 } from "./useUtils";
+import { fileBase64 } from "./useUtils";
 
 export function useForm<T>(initState: T) {
 

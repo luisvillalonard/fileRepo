@@ -1,10 +1,10 @@
 export const secretKey = 'D7B9F2FD64B04F18B4D1EC4869FC52BA';
+export const filesFolder = 'docs';
 
 export function useConstants() {
 
     const API_URL = {
         Base: import.meta.env.PROD ? 'https://www.factuvapi.somee.com' : 'https://localhost:44375',
-        //Base: 'https://localhost:44340',
 
         ApiDefaultProps: {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -29,6 +29,7 @@ export function useConstants() {
             Base: 'documentos',
             Formulario: 'formulario',
         },
+        Roles: 'roles',
         Usuarios: 'usuarios',
     }
 

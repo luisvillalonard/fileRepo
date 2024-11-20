@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useData } from "../../hooks/useData"
 import { Alerta, Exito } from "../../hooks/useMensaje"
 import { Documento } from "../../interfaces/entidades"
@@ -10,6 +10,7 @@ import { GetFileBase64 } from "../../hooks/useUtils";
 import { RcFile } from "antd/es/upload";
 import { useNavigate } from "react-router-dom";
 import { useConstants } from "../../hooks/useConstants";
+import VisorPDF from "../../components/containers/visor";
 
 const DocumentoFormulario = () => {
 
@@ -61,7 +62,7 @@ const DocumentoFormulario = () => {
     useEffect(() => { editar(modelo) }, [modelo])
 
     return (
-        <Col lg={18} xs={24}>
+        <Col lg={{ span: 18, offset: 3 }} xs={24}>
             <Container title={
                 <>
                     <span style={{ fontSize: 18, fontWeight: 500 }}>{`Documento ${modelo?.codigo ?? ''}`.trim()}</span>
@@ -97,13 +98,12 @@ const DocumentoFormulario = () => {
                                     beforeUpload={cargarFotos}>
                                     <Button icon={<IconUpload />}>Cargar Documento PDF</Button>
                                 </Upload>
-                                {/* <input type="file" name="fotos" ref={refFile} style={{ display: 'none' }}
-                                    accept=".pdf"
-                                    onChange={cargarFotos} />
-                                <Button type="default" onClick={() => refFile.current?.click()}>
-                                    Agregar
-                                </Button> */}
                             </Form.Item>
+                        </Col>
+                        <Col xs={24}>
+                            <Flex style={{ width: '100%', height: 500 }}>
+                                <VisorPDF item={entidad?.imagen} />
+                            </Flex>
                         </Col>
                     </Row>
                 </Form>

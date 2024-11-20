@@ -32,7 +32,7 @@ const LoginPage = () => {
                 align="center"
                 justify="center"
                 style={{ height: '100%' }}>
-                <Col xl={{ span: 8 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24} xs={24}>
+                <Col lg={6} md={10} sm={24} xs={24}>
                     <Card
                         style={{ position: 'relative' }}
                         styles={{

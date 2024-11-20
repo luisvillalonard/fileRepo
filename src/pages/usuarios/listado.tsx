@@ -25,7 +25,6 @@ const UsuariosListado = (props: Pick<ControlProps, "filter">) => {
         <Table
             size="middle"
             bordered={false}
-            loading={procesando}
             pagination={{ size: 'default' }}
             dataSource={
                 procesando
@@ -42,14 +41,13 @@ const UsuariosListado = (props: Pick<ControlProps, "filter">) => {
             <Column title="Nombres" dataIndex="nombres" key="nombres" />
             <Column title="Apellidos" dataIndex="apellidos" key="apellidos" />
             <Column title="Correo Electr&oacute;nico" dataIndex="correo" key="correo" />
-            <Column title="Estado"
-                render={(record: Usuario) => (
-                    <Tag color={record.activo ? '#87d068' : 'red'}>{record.activo ? 'Activo' : 'Inactivo'}</Tag>
-                )} />
-            <Column title="Acci&oacute;n" align="center" width={80}
-                render={(record: Usuario) => (
-                    <ButtonEdit title={`Editar usuario (${record.nombres} ${record.apellidos})`.trim()} onClick={() => editar(record)} />
-                )} />
+            <Column title="Rol" render={(record: Usuario) => (record.rol?.nombre)} />
+            <Column title="Estado" render={(record: Usuario) => (
+                <Tag color={record.activo ? '#87d068' : 'red'}>{record.activo ? 'Activo' : 'Inactivo'}</Tag>
+            )} />
+            <Column title="Acci&oacute;n" align="center" width={80} render={(record: Usuario) => (
+                <ButtonEdit title={`Editar usuario (${record.nombres} ${record.apellidos})`.trim()} onClick={() => editar(record)} />
+            )} />
         </Table>
     )
 }

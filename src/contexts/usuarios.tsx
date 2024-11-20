@@ -27,6 +27,7 @@ function UsuariosProvider({ children }: ControlProps) {
             correo: '',
             activo: true,
             cambio: true,
+            rol: undefined,
             token: '',
         });
     }

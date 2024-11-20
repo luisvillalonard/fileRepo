@@ -13,7 +13,7 @@ const MenuApp = () => {
     const { token: { colorBgContainer, colorPrimary } } = theme.useToken()
     const navUrl = useNavigate()
     const { Urls } = useConstants()
-    const { IconFile, IconUsers } = useIconos()
+    const { IconFile, IconUsers, IconUserRole } = useIconos()
     const { Sider } = Layout
     const headerStyle: React.CSSProperties = {
         fontSize: 16,
@@ -23,7 +23,6 @@ const MenuApp = () => {
         color: colorPrimary,
         margin: 0
     }
-
 
     const items: MenuItem[] = [
         {
@@ -36,13 +35,17 @@ const MenuApp = () => {
             label: <span style={headerStyle}>Usuarios</span>,
             icon: <IconUsers style={iconHeaderStyle} />,
         },
+        {
+            key: Urls.Roles,
+            label: <span style={headerStyle}>Roles de Usuarios</span>,
+            icon: <IconUserRole style={iconHeaderStyle} />,
+        },
     ]
 
     if (!user) {
         return <></>
     }
 
-    console.log(viewMenu)
     return (
         <Sider
             width={250}

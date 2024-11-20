@@ -26,10 +26,10 @@ export default function authReducer(state: AuthState, action: AuthAction): AuthS
             return { ...state, user: undefined, token: undefined }
 
         case 'SHOW_MENU':
-            return { ...state, viewMenu: state.viewMenu, }
+            return { ...state, viewMenu: action.open, }
 
         case 'SHOW_USER_INFO':
-            return { ...state, viewInfoUser: !state.viewInfoUser, }
+            return { ...state, viewInfoUser: action.open, }
 
             case 'TOKEN':
                 return { ...state, token: action.token, }

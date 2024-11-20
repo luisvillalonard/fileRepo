@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import { Button, Form, Input, Flex } from "antd"
+import { Button, Form, Input, Flex, Alert } from "antd"
 import { useData } from "../../hooks/useData";
 import { UsuarioCambioClave } from "../../interfaces/entidades"
 import { ControlProps } from "../../interfaces/globales"
@@ -61,6 +61,11 @@ const CambioClavePage = (props: Pick<ControlProps, "item">) => {
             initialValues={user}
             onFinish={onFinish}
         >
+            {
+                !result.ok
+                    ? <Alert type="warning" showIcon message={result.mensaje} style={{ marginBottom: 30 }} />
+                    : <></>
+            }
             <Form.Item
                 name="passwordNew"
                 rules={[{ required: true, message: 'Obligatorio', }]}
@@ -81,12 +86,12 @@ const CambioClavePage = (props: Pick<ControlProps, "item">) => {
                     { required: true, message: 'Obligatorio', },
                     ({ getFieldValue }) => ({
                         validator(_, value) {
-                          if (!value || getFieldValue('passwordNew') === value) {
-                            return Promise.resolve();
-                          }
-                          return Promise.reject(new Error('Esta clave debe ser igual a la nueva clave'));
+                            if (!value || getFieldValue('passwordNew') === value) {
+                                return Promise.resolve();
+                            }
+                            return Promise.reject(new Error('Esta clave debe ser igual a la nueva clave'));
                         },
-                      }),
+                    }),
                 ]}
                 style={{ marginBottom: 24 }}
             >

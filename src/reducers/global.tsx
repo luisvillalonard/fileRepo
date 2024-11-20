@@ -11,7 +11,7 @@ export type ACTIONTYPES<DataType> =
     | { type: ACTIONS.EDITING; model: DataType }
     | { type: ACTIONS.CANCEL }
     | { type: ACTIONS.FETCHING }
-    | { type: ACTIONS.FETCH_COMPLETE; data?: DataType; model?: DataType; paginacion?: PagingResult; recargar?: boolean }
+    | { type: ACTIONS.FETCH_COMPLETE; data?: DataType[]; model?: DataType; paginacion?: PagingResult; recargar?: boolean }
 
 export interface State<DataType> {
     modelo?: DataType | undefined,

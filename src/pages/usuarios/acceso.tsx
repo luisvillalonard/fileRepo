@@ -1,11 +1,10 @@
-import { Button, Card, Checkbox, Flex, Form, Input } from "antd"
+import { Alert, Button, Checkbox, Flex, Form, Input } from "antd"
 import { ControlProps } from "../../interfaces/globales"
-import { useEffect, useState } from "react"
-import { Login, Usuario } from "../../interfaces/entidades"
+import { useState } from "react"
+import { Login } from "../../interfaces/entidades"
 import { useForm } from "../../hooks/useForm"
 import { useData } from "../../hooks/useData"
 import { useIconos } from "../../hooks/useIconos"
-import { useLocation, useNavigate } from "react-router-dom"
 
 const AccesoForm = (props: Pick<ControlProps, "onChange">) => {
 
@@ -13,7 +12,7 @@ const AccesoForm = (props: Pick<ControlProps, "onChange">) => {
     const { contextUsuarios: { state: { procesando }, validar } } = useData()
     const { IconMail, IconLock, IconLoading } = useIconos()
     const { entidad: user } = useForm<Login>({ correo: '', clave: '', recuerdame: true })
-    const [result, setResult] = useState({ ok: false, mensaje: '' })
+    const [result, setResult] = useState({ ok: true, mensaje: '' })
 
     const onFinish = async (values: Login) => {
 
@@ -41,6 +40,11 @@ const AccesoForm = (props: Pick<ControlProps, "onChange">) => {
             initialValues={user}
             onFinish={onFinish}
         >
+            {
+                !result.ok
+                    ? <Alert type="warning" showIcon message={result.mensaje} style={{ marginBottom: 30 }} />
+                    : <></>
+            }
             <Form.Item
                 name="correo"
                 rules={[{ required: true, message: 'Obligatorio', }]}

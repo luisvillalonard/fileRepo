@@ -73,14 +73,15 @@ export const AuthProvider = ({ children }: ControlProps) => {
     const showMenu = () => {
         const menuOpen = sessionStorage.getItem(SessionStorageEnum.MenuOpen);
         if (menuOpen) {
-            dispatch({ type: 'SHOW_MENU', open: Boolean(menuOpen) ?? false })
+            dispatch({ type: 'SHOW_MENU', open: menuOpen === 'true' ? false : true })
+            sessionStorage.setItem(SessionStorageEnum.MenuOpen, menuOpen === 'true' ? 'false' : 'true')
         }
     }
 
     const showUserInfo = () => {
         const menuOpen = sessionStorage.getItem(SessionStorageEnum.MenuOpen);
         if (menuOpen) {
-            dispatch({ type: 'SHOW_USER_INFO', open: Boolean(menuOpen) ?? false })
+            dispatch({ type: 'SHOW_USER_INFO', open: menuOpen === 'true' ? false : true })
         }
     }
 

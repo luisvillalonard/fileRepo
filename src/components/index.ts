@@ -3,16 +3,14 @@
 import { TitlePage } from "../components/titles"
 import { useButtons } from "./buttons"
 import { useContainers } from "./containers"
-import { useImages } from "./images"
 import { useInputs } from "./inputs"
 import { useLayout } from "./layout"
 import { useProviders } from "./providers"
 
 export function useComponents() {
 
-    const { ButtonDefault, ButtonPrimary, ButtonDanger, ButtonEdit } = useButtons()
-    const { Container, FormDrawer, Loading, PanelPos } = useContainers()
-    const { Imagen } = useImages()
+    const { ButtonDefault, ButtonPrimary, ButtonDanger, ButtonEdit, ButtonText } = useButtons()
+    const { Container, FormModal, Loading, PanelPos } = useContainers()
     const { Searcher } = useInputs()
     const { HeaderApp, MenuApp, RutasApp } = useLayout()
     const { ContextsProviders, StyleProvider } = useProviders()
@@ -24,15 +22,13 @@ export function useComponents() {
         ButtonPrimary,
         ButtonDanger,
         ButtonEdit,
+        ButtonText,
 
         /* Containers */
         Container,
-        FormDrawer,
+        FormModal,
         Loading,
         PanelPos,
-
-        /* Images */
-        Imagen,
 
         /* Inputs */
         Searcher,
