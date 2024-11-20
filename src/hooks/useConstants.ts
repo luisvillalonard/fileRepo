@@ -4,7 +4,7 @@ export const filesFolder = 'docs';
 export function useConstants() {
 
     const API_URL = {
-        Base: 'http://www.repofileapi.somee.com',
+        Base: 'https://www.repofileapi.somee.com',
 
         ApiDefaultProps: {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
