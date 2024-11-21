@@ -11,7 +11,7 @@ import { useConstants } from "../../hooks/useConstants"
 
 const PageDocumentos = () => {
 
-    const { contextUsuarios: { state: { procesando }, nuevo } } = useData()
+    const { contextDocumentos: { state: { procesando }, nuevo } } = useData()
     const [filter, setFilter] = useState<string>('')
     const { ButtonPrimary, Searcher, TitlePage } = useComponents()
     const { IconPlus, IconFile } = useIconos()
