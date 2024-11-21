@@ -18,7 +18,7 @@ const CambioClavePage = (props: Pick<ControlProps, "item">) => {
     const { IconUser, IconLock, IconLoading } = useIconos()
     const { Urls } = useConstants()
     const { entidad: user, editar, handleChangeInput } = useForm<UsuarioCambioClave | undefined>(item)
-    const [result, setResult] = useState({ ok: false, mensaje: '' })
+    const [result, setResult] = useState({ ok: true, mensaje: '' })
     const nav = useNavigate()
     const url = useLocation()
 
@@ -37,9 +37,11 @@ const CambioClavePage = (props: Pick<ControlProps, "item">) => {
         }
 
         if (resp.datos) {
+            LoggedIn(resp.datos)
             if (url.pathname === Urls.Home || url.pathname === Urls.Login) {
-                LoggedIn(resp.datos)
                 nav(Urls.Home, { replace: true })
+            } else {
+                nav(url.pathname, { replace: true })
             }
         }
 

@@ -4,6 +4,7 @@ import type { MenuProps } from 'antd'
 import { useData } from '../../hooks/useData'
 import { useConstants } from '../../hooks/useConstants'
 import { useIconos } from '../../hooks/useIconos'
+import { useEffect, useState } from 'react'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -11,9 +12,10 @@ const MenuApp = () => {
 
     const { contextAuth: { state: { user, viewMenu } } } = useData()
     const { token: { colorBgContainer, colorPrimary } } = theme.useToken()
+    const [items, setItems] = useState<MenuItem[] | undefined>(undefined)
     const navUrl = useNavigate()
     const { Urls } = useConstants()
-    const { IconFile, IconUsers, IconUserRole } = useIconos()
+    const { IconFile, IconUsers } = useIconos()
     const { Sider } = Layout
     const headerStyle: React.CSSProperties = {
         fontSize: 16,
@@ -24,7 +26,7 @@ const MenuApp = () => {
         margin: 0
     }
 
-    const items: MenuItem[] = [
+    const itemsMenu: MenuItem[] = [
         {
             key: Urls.Documentos.Base,
             label: <span style={headerStyle}>Documentos</span>,
@@ -35,14 +37,20 @@ const MenuApp = () => {
             label: <span style={headerStyle}>Usuarios</span>,
             icon: <IconUsers style={iconHeaderStyle} />,
         },
-        {
-            key: Urls.Roles,
-            label: <span style={headerStyle}>Roles de Usuarios</span>,
-            icon: <IconUserRole style={iconHeaderStyle} />,
-        },
     ]
 
-    if (!user) {
+    useEffect(() => {
+        if (user && !items) {
+            setItems(itemsMenu.filter(opt => {
+                if (opt?.key === Urls.Usuarios && !user.esAdmin) {
+                    return false
+                }
+                return true
+            }))
+        }
+    }, [user])
+
+    if (!user && !items) {
         return <></>
     }
 

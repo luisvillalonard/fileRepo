@@ -6,7 +6,6 @@ import PageUsuarios from '../../pages/usuarios/page'
 import { useConstants } from '../../hooks/useConstants'
 import PageDocumentos from '../../pages/documentos/page'
 import DocumentoFormulario from '../../pages/documentos/formulario'
-import PageRoles from '../../pages/roles/page'
 
 const RutasApp = () => {
 
@@ -16,7 +15,6 @@ const RutasApp = () => {
         <Routes>
             <Route path={Urls.Home} element={<HomePage />} />
             <Route path={Urls.Login} element={<LoginPage />} />
-            <Route path={Urls.Roles} element={<PageRoles />} />
             <Route path={Urls.Usuarios} element={<PageUsuarios />} />
             <Route path={Urls.Documentos.Base} element={<PageDocumentos />} />
             <Route path={`${Urls.Documentos.Base}/${Urls.Documentos.Formulario}`} element={<DocumentoFormulario />} />

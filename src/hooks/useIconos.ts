@@ -3,6 +3,7 @@ import { IconType } from "react-icons"
 import { AiOutlineUser } from "react-icons/ai"
 import { BsSearch, BsTrash, BsUpload } from "react-icons/bs"
 import { BsPlusLg } from "react-icons/bs"
+import { FaRegFilePdf } from "react-icons/fa6"
 import { GoChecklist, GoMail, GoTasklist } from "react-icons/go"
 import { HiOutlineBuildingOffice2, HiOutlineUsers } from "react-icons/hi2"
 import { LiaSearchPlusSolid } from "react-icons/lia"
@@ -15,6 +16,7 @@ export function useIconos() {
     const IconCompany: IconType = HiOutlineBuildingOffice2;
     const IconEdit = EditOutlined;
     const IconFile: IconType = LuFileText;
+    const IconFilePDF: IconType = FaRegFilePdf;
     const IconLoading = LoadingOutlined;
     const IconLock = LockOutlined;
     const IconLogout = PoweroffOutlined;
@@ -35,6 +37,7 @@ export function useIconos() {
         IconCompany,
         IconEdit,
         IconFile,
+        IconFilePDF,
         IconLock,
         IconLoading,
         IconLogout,

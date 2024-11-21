@@ -4,21 +4,15 @@ export interface Login {
     recuerdame: boolean
 }
 
-export interface Rol {
-    id: number,
-    nombre: string,
-    esAdmin: boolean,
-}
-
 export interface Usuario {
     id: number,
+    codigo: string | undefined,
     nombres: string,
     apellidos: string,
     correo: string,
     activo: boolean,
     cambio: boolean,
-    rol: Rol | undefined,
-    token: string | undefined,
+    esAdmin: boolean,
 }
 
 export interface UsuarioCambioClave {

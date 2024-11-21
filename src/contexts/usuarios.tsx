@@ -22,13 +22,13 @@ function UsuariosProvider({ children }: ControlProps) {
     const nuevo = async (): Promise<void> => {
         editar({
             id: 0,
+            codigo: undefined,
             nombres: '',
             apellidos: '',
             correo: '',
             activo: true,
             cambio: true,
-            rol: undefined,
-            token: '',
+            esAdmin: false,
         });
     }
 

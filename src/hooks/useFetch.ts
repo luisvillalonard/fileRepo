@@ -1,10 +1,11 @@
 import { ResponseResult } from "../interfaces/globales"
 import { useConstants } from "./useConstants"
-import { CookieEnum, getCookie } from "./useCookies"
+import { useData } from "./useData"
 
 export const useFetch = () => {
 
     const { API_URL } = useConstants()
+    const { contextAuth: { state: { user } } } = useData()
 
     async function customFetch<T>(url: string, options?: RequestInit): Promise<ResponseResult<T>> {
 
@@ -15,8 +16,7 @@ export const useFetch = () => {
             paginacion: undefined,
         }
 
-        const token = getCookie(CookieEnum.Token) ?? '';
-        const defaultHeaders = { ...API_URL.ApiDefaultProps.headers, Authorization: token };
+        const defaultHeaders = { ...API_URL.ApiDefaultProps.headers, Authorization: user?.codigo ?? '' };
         const reqMethod = !options?.method ? API_URL.ApiDefaultProps.method : options.method;
         const reqHeader = options?.headers ? { ...options.headers, ...defaultHeaders } : defaultHeaders;
         const reqBody = !options?.body ? null : JSON.stringify(options?.body);
@@ -36,8 +36,7 @@ export const useFetch = () => {
 
             return Promise.resolve({
                 ok: false,
-                datos: result,
-                mensaje: fetchResult.statusText
+                mensaje: fetchResult.statusText || result.mensaje
             } as ResponseResult<T>);
 
         } catch (err: unknown) {
@@ -45,7 +44,7 @@ export const useFetch = () => {
             return Promise.resolve({
                 ...resp,
                 ok: false,
-                mensaje: (message || 'Situación inesperada tratando de obtener los datos')
+                mensaje: (message && message.length > 0 ? message : 'Situación inesperada tratando de obtener los datos')
             });
         }
     }

@@ -7,14 +7,12 @@ import { SessionStorageEnum } from "../enums/storage"
 
 export interface AuthState {
     user: Usuario | undefined;
-    token: string | undefined,
     viewMenu: boolean;
     viewInfoUser: boolean,
 }
 
 export interface AuthContextState {
     state: AuthState,
-    setToken: (value: string) => void,
     LoggedIn: (user: Usuario) => void,
     LoggedOut: () => void,
     showMenu: () => void,
@@ -27,17 +25,6 @@ export const AuthContext = createContext<AuthContextState>({} as AuthContextStat
 export const AuthProvider = ({ children }: ControlProps) => {
 
     const [state, dispatch] = useReducer(authReducer, initState)
-
-    const setToken = (value: string | undefined) => {
-
-        if (value) {
-            setCookie(CookieEnum.Token, value)
-            dispatch({ type: 'TOKEN', token: value })
-        } else {
-            dispatch({ type: 'SIGN_OUT' })
-        }
-
-    }
 
     const getUser = () => {
 
@@ -58,7 +45,6 @@ export const AuthProvider = ({ children }: ControlProps) => {
 
         setCookie(CookieEnum.User, JSON.stringify(user))
         dispatch({ type: 'SIGN_IN', payload: user })
-        sessionStorage.setItem(SessionStorageEnum.Token, user.token ?? '')
         sessionStorage.setItem(SessionStorageEnum.MenuOpen, 'true')
 
     }
@@ -94,7 +80,6 @@ export const AuthProvider = ({ children }: ControlProps) => {
             state,
             LoggedIn,
             LoggedOut,
-            setToken,
             getUser,
             showMenu,
             showUserInfo,
