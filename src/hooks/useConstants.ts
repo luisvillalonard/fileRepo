@@ -4,7 +4,7 @@ export const filesFolder = 'docs';
 export function useConstants() {
 
     const API_URL = {
-        Base: import.meta.env.PROD ? 'https://www.factuvapi.somee.com' : 'https://localhost:44375',
+        Base: 'https://www.repofileapi.somee.com',
 
         ApiDefaultProps: {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
